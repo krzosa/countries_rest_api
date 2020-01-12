@@ -11,7 +11,7 @@ public class CountryController {
     private final CountryRepository repository;
 
     @Autowired
-    CountryController(CountryRepository repository, CountryQueries queries){
+    CountryController(CountryRepository repository){
         this.repository = repository;
     }
 
@@ -37,9 +37,13 @@ public class CountryController {
         return repository.findByCountryAlphaCodes(code);
     }
 
-//    @GetMapping("/rest/{nameOrCode}")
-//    List<CountryEntity> requestCountryByNameOrAlphaCode(@PathVariable(name="nameOrCode") String name){
-//        name = name.trim().toLowerCase();
-//    }
+    @GetMapping("/rest/{nameOrCode}")
+    List<CountryEntity> requestCountryByNameOrAlphaCode(@PathVariable(name="nameOrCode") String nameOrCode){
+        nameOrCode = nameOrCode.trim().toLowerCase();
+        if(nameOrCode.length()<=3)
+            return repository.findByCountryAlphaCodes(nameOrCode);
+        else
+            return repository.findByCountryName(nameOrCode);
+    }
 
 }

@@ -1,26 +1,43 @@
 package org.krzosa.restful.countries_rest_api.country;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity(name = "country")
 public class CountryEntity {
     @Id
     @GeneratedValue
-    private long id;
-    private String name;
-    private String alpha2Code;
+    private Long id;
     private String alpha3Code;
+    private String alpha2Code;
     private String capital;
+    private String name;
+    private Integer population;
     private String region;
     private String subregion;
-    private long population;
-
-    public CountryEntity() { }
+    @ElementCollection
+    private List<String> topLevelDomain = new ArrayList<>();
+    @ElementCollection
+    private List<String> callingCodes = new ArrayList<>();
+    @ElementCollection
+    private List<String> altSpellings = new ArrayList<>();
+    @ElementCollection
+    private List<String> timezones = new ArrayList<>();
+    @ElementCollection
+    private List<String> languages = new ArrayList<>();
 
     public CountryEntity(String name, String alpha2Code, String alpha3Code) {
         this.name = name;
@@ -28,3 +45,5 @@ public class CountryEntity {
         this.alpha3Code = alpha3Code;
     }
 }
+
+

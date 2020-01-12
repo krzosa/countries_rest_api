@@ -15,7 +15,6 @@ public class CountryController {
         this.repository = repository;
     }
 
-
     @GetMapping("/rest/all")
     List<CountryEntity> requestAll(){
         return repository.findAll();
@@ -31,6 +30,7 @@ public class CountryController {
         countryName = countryName.trim().toLowerCase();
         return repository.findByCountryName(countryName);
     }
+
     @GetMapping("/rest/alpha/{code}")
     List<CountryEntity> requestCountryByAlphaCode(@PathVariable(name="code") String code){
         code = code.trim().toLowerCase();

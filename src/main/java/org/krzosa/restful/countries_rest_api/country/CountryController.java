@@ -9,13 +9,12 @@ import java.util.List;
 public class CountryController {
 
     private final CountryRepository repository;
-    private final CountryQueries queries;
 
     @Autowired
     CountryController(CountryRepository repository, CountryQueries queries){
         this.repository = repository;
-        this.queries = queries;
     }
+
 
     @GetMapping("/rest/all")
     List<CountryEntity> requestAll(){
@@ -28,8 +27,19 @@ public class CountryController {
     }
 
     @GetMapping("/rest/name/{name}")
-    List<CountryEntity> requestCountry(@PathVariable String countryName){
-        return queries.findByCountryName(countryName);
+    List<CountryEntity> requestCountryByName(@PathVariable(name="name") String countryName){
+        countryName = countryName.trim().toLowerCase();
+        return repository.findByCountryName(countryName);
     }
+    @GetMapping("/rest/alpha/{code}")
+    List<CountryEntity> requestCountryByAlphaCode(@PathVariable(name="code") String code){
+        code = code.trim().toLowerCase();
+        return repository.findByCountryAlphaCodes(code);
+    }
+
+//    @GetMapping("/rest/{nameOrCode}")
+//    List<CountryEntity> requestCountryByNameOrAlphaCode(@PathVariable(name="nameOrCode") String name){
+//        name = name.trim().toLowerCase();
+//    }
 
 }

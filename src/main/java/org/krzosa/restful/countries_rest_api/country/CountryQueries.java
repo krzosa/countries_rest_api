@@ -6,7 +6,6 @@ import org.springframework.data.repository.Repository;
 import java.util.List;
 
 public interface CountryQueries extends Repository<CountryEntity,Long> {
-    @Query("Select c from CountryEntity c where c.name = :name")
-    List<CountryEntity> findByCountryName(String name);
+
 
 }

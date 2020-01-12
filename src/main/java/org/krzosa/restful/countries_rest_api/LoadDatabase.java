@@ -14,8 +14,11 @@ public class LoadDatabase {
     CommandLineRunner initDatabase(CountryRepository repository){
 //        Logger test = LoggerFactory.getLogger(LoadDatabase.class);
         return args -> {
-            log.info("Preloading " + repository.save(new CountryEntity("Poland","PL")));  
-            log.info("Preloading " + repository.save(new CountryEntity("Korea","KR")));
+            log.info("Preloading " + repository.save(new CountryEntity("Poland","PL", "POL")));
+            log.info("Preloading " + repository.save(new CountryEntity("Polandd","WL", "WOL")));
+            log.info("Preloading " + repository.save(new CountryEntity("Polanddd","QL", "QOL")));
+            log.info("Preloading " + repository.save(new CountryEntity("Korea","KR", "KOR")));
+            log.info("Preloading " + repository.save(new CountryEntity("Test","TT", "TTT")));
         };
     }
 }

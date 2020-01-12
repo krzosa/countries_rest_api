@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Data
-@Entity
+@Entity(name = "country")
 public class CountryEntity {
     @Id
     @GeneratedValue
@@ -22,8 +22,9 @@ public class CountryEntity {
 
     public CountryEntity() { }
 
-    public CountryEntity(String name, String alpha2Code) {
+    public CountryEntity(String name, String alpha2Code, String alpha3Code) {
         this.name = name;
         this.alpha2Code = alpha2Code;
+        this.alpha3Code = alpha3Code;
     }
 }

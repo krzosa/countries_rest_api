@@ -31,7 +31,7 @@ public class CountryEntity {
     @Id
     @GeneratedValue
     private Long id;
-    private Integer area;
+    private Double area;
     private String alpha3Code;
     private String alpha2Code;
     private String capital;
@@ -44,8 +44,8 @@ public class CountryEntity {
     private String demonym;
     private String flag;
     private Double gini;
-    @ElementCollection
-    private List<RegionalBloc> RegionalBlocs = new ArrayList<>();
+//    @ElementCollection
+//    private List<RegionalBloc> RegionalBlocs = new ArrayList<>();
     @ElementCollection
     private List<Double> latlng = new ArrayList<>();
     @ElementCollection
@@ -58,6 +58,8 @@ public class CountryEntity {
     private List<String> timezones = new ArrayList<>();
     @ElementCollection
     private List<Currency> currencies = new ArrayList<>();
+    @ElementCollection
+    private List<Language> languages = new ArrayList<>();
 
     public CountryEntity(String name, String alpha2Code, String alpha3Code) {
         this.name = name;

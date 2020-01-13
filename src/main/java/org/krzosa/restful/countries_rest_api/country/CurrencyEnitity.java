@@ -4,23 +4,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 
 @Data
-@Entity
+@Entity(name="Currency")
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegionalBloc {
-
+public class CurrencyEnitity {
     @Id
     @GeneratedValue
     private Integer id;
-    private String acronym;
+    private String code;
     private String name;
-    @ElementCollection
-    private List<String> otherAcronyms;
-    @ElementCollection
-    private List<String> otherNames;
-
+    private String symbol;
 }

@@ -8,16 +8,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-
 @Data
-@Entity
+@Entity(name="Language")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Currency {
+public class LanguageEnitity {
+
     @Id
     @GeneratedValue
     private Integer id;
-    private String code;
+    private String iso639_1;
+    private String iso639_2;
     private String name;
-    private String symbol;
+    private String nativeName;
+
 }

@@ -1,7 +1,6 @@
 package org.krzosa.restful.countries_rest_api.country;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
@@ -21,37 +20,37 @@ public class CountryEntity {
     private String alpha3Code;
     private String alpha2Code;
     private String capital;
+    private String demonym;
+    private Double gini;
     private String name;
     private String nativeName;
     private String numericCode;
     private Integer population;
     private String region;
     private String subregion;
-    private String demonym;
-    private Double gini;
 
+    @ElementCollection
+    private List<String> altSpellings;
+    @ElementCollection
+    private List<String> callingCodes;
     @ElementCollection
     private List<Double> latlng;
     @ElementCollection
     private List<String> topLevelDomain;
     @ElementCollection
-    private List<String> callingCodes;
-    @ElementCollection
-    private List<String> altSpellings;
-    @ElementCollection
     private List<String> timezones;
 
     @OneToMany
-    @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
-    private List<Currency> currencies;
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<CurrencyEnitity> currencies;
 
     @OneToMany
-    @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
-    private List<Language> languages;
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<LanguageEnitity> languages;
 
     @OneToMany
-    @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
-    private List<RegionalBloc> RegionalBlocs;
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<RegionalBlocEntity> regionalBlocs;
 }
 
 

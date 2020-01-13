@@ -4,22 +4,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
-@Entity
+@Entity(name="RegionalBloc")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Language {
+public class RegionalBlocEntity {
 
     @Id
     @GeneratedValue
     private Integer id;
-    private String iso639_1;
-    private String iso639_2;
+    private String acronym;
     private String name;
-    private String nativeName;
+    @ElementCollection
+    private List<String> otherAcronyms;
+    @ElementCollection
+    private List<String> otherNames;
 
 }

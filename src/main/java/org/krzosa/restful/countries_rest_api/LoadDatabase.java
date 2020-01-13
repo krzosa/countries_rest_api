@@ -22,12 +22,11 @@ public class LoadDatabase {
 
     @Bean
     CommandLineRunner initDatabase(CountryRepository repository){
-        //TODO: fetch data from https://restcountries.eu/rest/v2/all to the database
         try {
             Resource resource = new ClassPathResource("countries.json");
             File file = resource.getFile();
             Reader reader = new FileReader(file);
-            JsonReader jsonReader = new JsonReader(reader);
+
             Gson gson = new Gson();
             countries = gson.fromJson(reader, CountryEntity[].class);
         }

@@ -20,11 +20,6 @@ public class CountryController {
         return repository.findAll();
     }
 
-    @PostMapping("/rest/all")
-    CountryEntity newCountry(@RequestBody CountryEntity country){
-        return repository.save(country);
-    }
-
     @GetMapping("/rest/name/{name}")
     List<CountryEntity> requestCountryByName(@PathVariable(name="name") String countryName){
         countryName = countryName.trim().toLowerCase();

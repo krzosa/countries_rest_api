@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CountryRepository extends CrudRepository<CountryEntity, Long> {
-    @Query("select c from country c where lower(c.name) like concat('%', :name, '%')")
+    @Query("select c from Country c where lower(c.name) like concat('%', :name, '%')")
     List<CountryEntity> findByCountryName(@Param("name") String name);
-    @Query("select c from country c where lower(c.alpha2Code) like :code or lower(c.alpha3Code) like :code")
+    @Query("select c from Country c where lower(c.alpha2Code) like :code or lower(c.alpha3Code) like :code")
     List<CountryEntity> findByCountryAlphaCodes(@Param("code") String code);
 
     //standard CRUD operations

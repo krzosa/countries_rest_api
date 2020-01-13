@@ -1,13 +1,26 @@
 package org.krzosa.restful.countries_rest_api.country;
 
-import javax.persistence.Embeddable;
-import java.util.ArrayList;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import java.util.List;
 
-@Embeddable
+@Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class RegionalBloc {
+
+    @Id
+    @GeneratedValue
+    private Integer id;
     private String acronym;
     private String name;
-    private List<String> otherAcronyms = new ArrayList<>();
-    private List<String> otherNames  = new ArrayList<>();
+    @ElementCollection
+    private List<String> otherAcronyms;
+    @ElementCollection
+    private List<String> otherNames;
+
 }

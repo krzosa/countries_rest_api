@@ -7,7 +7,7 @@ about Spring/databases/REST.
 * [Spring-Boot](https://spring.io/projects/spring-boot)
 * [Spring MVC](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html)
 * [Spring data JPA](https://spring.io/projects/spring-data-jpa)
-* [H2 Database](https://en.wikipedia.org/wiki/H2_(DBMS)
+* [H2 Database](https://en.wikipedia.org/wiki/H2_(DBMS))
 * [GSON(json to pojo conversion)](https://github.com/google/gson)
 * [Project Lombok](https://projectlombok.org/)
 
@@ -45,7 +45,7 @@ Here is the list of all the request commands:
 
 ## JSON Response example
 
-
+![img](https://github.com/krzosa/countries_rest_api/blob/master/img.png)
 
 
 

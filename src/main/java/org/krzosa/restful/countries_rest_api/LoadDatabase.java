@@ -1,40 +1,43 @@
 package org.krzosa.restful.countries_rest_api;
 
 import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
 import lombok.extern.slf4j.Slf4j;
 import org.krzosa.restful.countries_rest_api.country.CountryEntity;
 import org.krzosa.restful.countries_rest_api.country.CountryRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.util.FileCopyUtils;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.Reader;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 @Configuration
-@Slf4j
 public class LoadDatabase {
     CountryEntity[] countries;
+
+    Logger logger = LoggerFactory.getLogger(LoadDatabase.class);
 
     @Bean
     CommandLineRunner initDatabase(CountryRepository repository){
         try {
-            Resource resource = new ClassPathResource("countries.json");
-            File file = resource.getFile();
-            Reader reader = new FileReader(file);
+            String data = "";
+            Resource resource = new ClassPathResource("static/countries.json");
+            byte[] bdata = FileCopyUtils.copyToByteArray(resource.getInputStream());
+            data = new String(bdata, StandardCharsets.UTF_8);
 
             Gson gson = new Gson();
-            countries = gson.fromJson(reader, CountryEntity[].class);
+            countries = gson.fromJson(data, CountryEntity[].class);
         }
-        catch(Exception e){ log.info("EXCEPTION -> LOADDATABASE.JAVA", e); }
+        catch(Exception e){ logger.info("EXCEPTION -> LOADDATABASE.JAVA", e); }
 
         return args -> {
             for(CountryEntity country : countries)
-                log.info("Saving: " + repository.save(country));
+                logger.info("Saving: " + repository.save(country));
         };
     }
 }
